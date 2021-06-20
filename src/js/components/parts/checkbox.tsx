@@ -28,14 +28,14 @@ const SwitchWrapper = styled.label`
     }
 `;
 
-const SwitchBoxSlider = styled.div<{on:boolean}>`
+const SwitchBoxSlider = styled.div<{checked:boolean}>`
     position: absolute;
     width: 50%;
     height: 100%;
     border-radius: 3px;
     background: linear-gradient(#333,#555);
     top: 0;
-    left: ${props=> props.on ? (160 - 80)+"px" : 0};
+    left: ${props=> props.checked ? (160 - 80)+"px" : 0};
     transition: .2s linear;
     z-index: 10;
     cursor: pointer;
@@ -44,11 +44,11 @@ const SwitchBoxSlider = styled.div<{on:boolean}>`
     }
 `;
 
-const SwitchOn = styled.div<{on:boolean}>`
+const SwitchOn = styled.div<{checked:boolean}>`
     width: 50%;
     height: 100%;
     position: relative;
-    background: ${props=> props.on ? "#52c082" : "#111"};
+    background: ${props=> props.checked ? "#52c082" : "#111"};
     transition: .2s linear;
 `;
 
@@ -68,10 +68,10 @@ const NamePlate = styled.span`
 export const SwitchBox:(props:CheckBox<string>)=>JSX.Element = ({name,checked,func,arg}) =>{
     return(
         <SwitchWrapper>
-            <SwitchBoxSlider on={checked}>
+            <SwitchBoxSlider checked={checked}>
                 <NamePlate>{name}</NamePlate>
             </SwitchBoxSlider>
-            <SwitchOn on={checked}>
+            <SwitchOn checked={checked}>
                 <NamePlate>
                     ON
                 </NamePlate>
