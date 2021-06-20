@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" ExtensionBundleId="ItemInspector" ExtensionBundleVersion="0.7.0"
+<ExtensionManifest Version="9.0" ExtensionBundleId="ItemInspector" ExtensionBundleVersion="0.8.0"
 		ExtensionBundleName="ItemInspector" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ExtensionList>
-		<Extension Id="ItemInspector" Version="0.7.0" />
+		<Extension Id="ItemInspector" Version="0.8.0" />
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
@@ -70,16 +70,16 @@
 					<Geometry>
 						<Size>
 							<Height>300</Height>
-							<Width>300</Width>
+							<Width>350</Width>
 						</Size>
-                    <!--<MinSize>
-                            <Height>550</Height>
-                            <Width>400</Width>
+                    	<MinSize>
+                            <Height>250</Height>
+                            <Width>300</Width>
                         </MinSize>
                         <MaxSize>
                             <Height>550</Height>
                             <Width>400</Width>
-                        </MaxSize>-->
+                        </MaxSize>
                         
 					</Geometry>
 					<Icons>

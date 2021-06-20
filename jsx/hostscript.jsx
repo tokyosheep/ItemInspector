@@ -1,6 +1,3 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global $, Folder*/
-
 function hostScript(obj){
     switch(obj.funcType){
         case "justAlert":
@@ -12,3 +9,5 @@ function hostScript(obj){
     }
     return true;
 }  
+
+	
