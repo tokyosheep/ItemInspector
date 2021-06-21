@@ -4,12 +4,11 @@ import StateType from "../redux/stateType";
 import { useMemo , useEffect } from "react";
 import { placedItems_set , prevItems_set } from "../redux/actions/placedImgActions";
 import { documentID_set } from "../redux/actions/documentActions";
-import styled from "styled-components";
 import { csInterface } from "../fileSystem/init";
 import { createGlobalStyle } from "styled-components";
 import { init } from "../fileSystem/init";
 import { saveEvent_check , alertEvent_check } from "../redux/actions/eventSwitch";
-import { saveJSON  , loadPlacedItems , lookUpModifiedTime} from "../fileSystem/inspectItmes";
+import { saveJSON  , loadPlacedItems , lookUpModifiedTime , loadDocumentID} from "../fileSystem/inspectItmes";
 import { compareItems } from "../fileSystem/eventFunc";
 
 import { dispatchAfterActivate } from "../fileSystem/eventFunc";
@@ -24,11 +23,6 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const recordJSONAfterSave = async(docID) =>{
-    const items = await loadPlacedItems();
-    if(!items)return;
-    saveJSON(await lookUpModifiedTime(items.files,items.doc),docID);
-}
 
 const Layout = () =>{
     const dispatch = useDispatch();
@@ -37,11 +31,19 @@ const Layout = () =>{
     const places = useSelector((state:StateType)=>state.places);
     const prevs = useSelector((state:StateType)=>state.prevItems);
     const docID = useSelector((state:StateType)=>state.documentID);
+    const recordJSONAfterSave = async() =>{
+        const items = await loadPlacedItems();
+        if(!items)return;
+        const id = await loadDocumentID();/* idも配置アイテムも新しく読み込み直す念のため */
+        if(!id)return;
+        saveJSON(await lookUpModifiedTime(items.files,items.doc),id);
+    }
+    
     useMemo(()=>{
         /*　引数の内容を更新するためイベントは常に更新させる */
-        csInterface.removeEventListener("documentAfterSave",()=>recordJSONAfterSave(docID));
-        if(saveEvent)csInterface.addEventListener("documentAfterSave",()=>recordJSONAfterSave(docID));
-    },[saveEvent,docID]);
+        csInterface.removeEventListener("documentAfterSave",()=>recordJSONAfterSave());
+        if(saveEvent)csInterface.addEventListener("documentAfterSave",()=>recordJSONAfterSave());
+    },[saveEvent]);
     useEffect(()=>{
         if(alertEvent){
             console.log(prevs);

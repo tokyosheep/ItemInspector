@@ -1,4 +1,5 @@
 (function(){
+    if(app.documents.length===0)return false;
     var places = app.activeDocument.placedItems;
     var files = [];
     for(var i=0;i<places.length;i++){

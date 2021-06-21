@@ -8,6 +8,8 @@ import { ImagesDataType } from "../redux/redux/placedImages";
 import { loadDocumentID , loadPlacedItems , lookUpModifiedTime , jsonDir } from "./inspectItmes";
 import { AppALert } from "../fileSystem/connectJSX";
 
+import { replaceDesktop } from "./inspectItmes";
+
 type StatusType = {id:string|false,places:ImagesDataType[]|false,prev:ImagesDataType[]|false};
 
 export　const dispatchAfterActivate:()=>Promise<StatusType> = async() =>{
@@ -22,7 +24,7 @@ export　const dispatchAfterActivate:()=>Promise<StatusType> = async() =>{
     if(docID===false)return status;
     status.id = docID;
     try{
-        const r = await fs.promises.readFile(`${path.dirname(places.doc.replace("~/Desktop",dir_desktop))}/${jsonDir}/${status.id}.json`,{encoding:"utf-8"});
+        const r = await fs.promises.readFile(`${path.dirname(replaceDesktop(places.doc))}/${jsonDir}/${status.id}.json`,{encoding:"utf-8"});
         console.log(r);
         const prevs =  JSON.parse(r);
         status.prev = prevs; 
