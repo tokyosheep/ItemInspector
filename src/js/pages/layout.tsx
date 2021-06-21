@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
 const recordJSONAfterSave = async(docID) =>{
     const items = await loadPlacedItems();
     if(!items)return;
-    saveJSON(await lookUpModifiedTime(items.files),docID);
+    saveJSON(await lookUpModifiedTime(items.files,items.doc),docID);
 }
 
 const Layout = () =>{

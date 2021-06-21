@@ -17,10 +17,10 @@ export　const dispatchAfterActivate:()=>Promise<StatusType> = async() =>{
     const places = await loadPlacedItems();
     console.log(places);
     if(places === false) return status;
-    status.places = await lookUpModifiedTime(places.files);
+    status.places = await lookUpModifiedTime(places.files,places.doc);
     const docID = await loadDocumentID();
     if(docID===false)return status;
-    status.id = docID.substr(8,docID.length);
+    status.id = docID;
     try{
         const r = await fs.promises.readFile(`${path.dirname(places.doc.replace("~/Desktop",dir_desktop))}/${jsonDir}/${status.id}.json`,{encoding:"utf-8"});
         console.log(r);
