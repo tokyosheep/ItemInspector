@@ -40,7 +40,6 @@ const Layout = () =>{
     }
     
     useMemo(()=>{
-        /*　引数の内容を更新するためイベントは常に更新させる */
         csInterface.removeEventListener("documentAfterSave",()=>recordJSONAfterSave());
         if(saveEvent)csInterface.addEventListener("documentAfterSave",()=>recordJSONAfterSave());
     },[saveEvent]);
