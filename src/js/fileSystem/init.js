@@ -36,7 +36,7 @@ const loadJsx = async(jsxFolder) =>{
 }
 
 export const init = async() =>{
-    //reloadEvent();
+    reloadEvent();
     csInterface.evalScript(`$.evalFile("${extensionRoot}/json2.js")`);//json2読み込み
     await loadJsx(jsxParts);
     await loadJsx(mainJsxFolder);

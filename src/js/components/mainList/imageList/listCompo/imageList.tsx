@@ -1,13 +1,17 @@
 import * as React from "react";
 import { useCallback } from "react";
 import { useSelector , useDispatch } from "react-redux";
-import StateType from "../../../redux/stateType";
+import StateType from "../../../../redux/stateType";
 import styled from "styled-components";
 
-import { MainContainer } from "../../../style/container";
-const { ImageListCompo } = MainContainer;
+import ListCompo from "./listCompo";
 
-import ListCompo from "./listCompo/listCompo";
+const Caution = styled.h2`
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    margin: 3px;
+`;
 
 const ListTitle = styled.h3`
     color: #fff;
@@ -27,10 +31,11 @@ const FileListWrapper = styled.ul`
 const ImageList = () =>{
     const prevItems = useSelector((state:StateType)=>state.prevItems);
     const places = useSelector((state:StateType)=>state.places);
-    const prevList = prevItems.map((f,i)=><li key={i}><ListCompo filePath={f.path} modifiedDate={f.modifiedDate} /></li>);
-    const placeList = places.map((f,i)=><li key={i}><ListCompo filePath={f.path} modifiedDate={f.modifiedDate} /></li>);
+    const prevList = prevItems.map((f,i)=><li key={i}><ListCompo imgData={f} /></li>);
+    const placeList = places.map((f,i)=><li key={i}><ListCompo imgData={f} /></li>);
     return(
-        <ImageListCompo>
+        <>
+            <Caution>files did't match previous files </Caution>
             <ListTitle>previous items</ListTitle>
             <FileListWrapper>
                 {prevList}
@@ -39,7 +44,7 @@ const ImageList = () =>{
             <FileListWrapper>
                 {placeList}
             </FileListWrapper>
-        </ImageListCompo>
+        </>
     )
 }
 

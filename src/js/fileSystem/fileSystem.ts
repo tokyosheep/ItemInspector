@@ -1,0 +1,1 @@
+export const turnBintoMB:(size:number)=>number = size => Math.trunc((size/1024024)*100)/100;

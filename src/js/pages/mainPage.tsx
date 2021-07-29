@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Header from "../components/mainList/header/header";
 import SideButtons from "../components/mainList/asideButtons/asideButtons";
-import ImageList from "../components/mainList/imageList/imageList";
+import ImgListBranch from "../components/mainList/imageList/ImgListBranch";
 import Footer from "../components/mainList/footer/footer";
 
 import { MainContainer } from "../style/container";
@@ -13,7 +13,7 @@ const MainPage = () =>{
         <Container>
             <Header />
             <SideButtons />
-            <ImageList />
+            <ImgListBranch />
             <Footer />
         </Container>
     )

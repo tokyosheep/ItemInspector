@@ -1,6 +1,8 @@
 export type ImagesDataType = {
     path:string,
-    modifiedDate:string
+    modifiedDate:string,
+    birthTime:string,
+    size:number
 }
 
 const initImages:ImagesDataType[] = [];

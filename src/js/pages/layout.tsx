@@ -54,9 +54,9 @@ const Layout = () =>{
     const setStatus = async()=>{
         const status = await dispatchAfterActivate();
         console.log(status);
-        dispatch(placedItems_set(status.places ? status.places : []));
-        dispatch(prevItems_set(status.prev ? status.prev : []));
-        dispatch(documentID_set(status.id　? status.id : ""));
+        dispatch(placedItems_set( status && status.places ? status.places : []));
+        dispatch(prevItems_set( status && status.prev ? status.prev : []));
+        dispatch(documentID_set( status && status.id　? status.id : ""));
     }
     useMemo(()=>{
         init();

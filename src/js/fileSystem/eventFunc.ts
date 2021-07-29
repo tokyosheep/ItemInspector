@@ -12,7 +12,7 @@ import { replaceDesktop } from "./inspectItmes";
 
 type StatusType = {id:string|false,places:ImagesDataType[]|false,prev:ImagesDataType[]|false};
 
-export　const dispatchAfterActivate:()=>Promise<StatusType> = async() =>{
+export　const dispatchAfterActivate:()=>Promise<StatusType|false> = async() =>{
     const status:StatusType ={
         id:false,places:false,prev:false
     }
@@ -45,7 +45,11 @@ const sortTuronPath:(array:ImagesDataType[])=>void = array =>{
 }
 
 const isSameItem:(item1:ImagesDataType,item2:ImagesDataType)=>boolean = (item1,item2) =>{
-    return item1.path　===　item2.path && item1.modifiedDate === item2.modifiedDate;
+    console.log(item1,item2);
+    return  item1.path　===　item2.path && 
+            item1.modifiedDate === item2.modifiedDate &&
+            item1.size === item2.size &&
+            item1.birthTime === item2.birthTime;
 }
 
 /* JSONに記録された前回データと最新の配置アイテムの情報を比較 */
@@ -62,13 +66,15 @@ export const compareItems:(presents:ImagesDataType[],preves:ImagesDataType[])=>v
     sortTuronPath(prevs);
 
     const incorrects = presents.reduce((acc,current,index)=>{
+        console.log(!isSameItem(current,prevs[index]));
         if(!isSameItem(current,prevs[index]))return [...acc,current.path];
         return acc;
     },[]);
     console.log(incorrects);
     if(incorrects.length === 0)return;
     await Promise.all(Array.from(new Set(incorrects)).map(async (value)=>{
-        await AppALert(`${path.basename(value)} isn't match previous one`);
+        console.log(value);
+        await AppALert(`${path.basename(value)} doesn't match previous one`);
     }));
 }
 

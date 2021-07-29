@@ -15,10 +15,15 @@ const setPureName:(name:string)=>string = name => path.basename(name,path.extnam
 export const replaceDesktop = filePath => filePath.replace("~/Desktop",dir_desktop);
     
 /* ファイルパスから最終更新日を取得 */
-export const lookUpModifiedTime:(files:string[],activePath)=>Promise<{path:string,modifiedDate:string}[]> = async (files,activePath) =>{
+export const lookUpModifiedTime:(files:string[],activePath)=>Promise<ImagesDataType[]> = async (files,activePath) =>{
     return await Promise.all(files.map(async(file)=>{
         const status = await fs.promises.stat(replaceDesktop(file));
-        return {path:path.relative(activePath,replaceDesktop(file)),modifiedDate:status.mtime.toString()};
+        return {
+                    path:path.relative(activePath,replaceDesktop(file)),
+                    modifiedDate:status.mtime.toString(),
+                    birthTime:status.birthtime.toString(),
+                    size:status.size
+            };
     }));
 }
 

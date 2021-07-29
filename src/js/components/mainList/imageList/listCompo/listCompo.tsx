@@ -2,14 +2,12 @@ import * as React from "react";
 import styled from "styled-components";
 
 import path from "path";
+import { ImagesDataType } from "../../../../redux/redux/placedImages";
 
-type ListProps = {
-    filePath:string,
-    modifiedDate:string
-}
+import { turnBintoMB } from "../../../../fileSystem/fileSystem";
 
 const ListWrapper = styled.ul`
-    height: 50px;
+    height: auto;
     border: 1px solid #999;
     padding: 0;
     list-style: none;
@@ -20,12 +18,14 @@ const ListWrapper = styled.ul`
     }
 `;
 
-const ListCompo:(props:ListProps)=>JSX.Element = ({filePath,modifiedDate}) =>{
+const ListCompo:(props:{imgData:ImagesDataType})=>JSX.Element = ({imgData}) =>{
     return(
         <ListWrapper>
-            <li>{path.basename(filePath)}</li>
-            <li>{filePath}</li>
-            <li>{modifiedDate}</li>
+            <li>{path.basename(imgData.path)}</li>
+            <li>{imgData.path}</li>
+            <li>{imgData.modifiedDate ?? "error"}</li>
+            <li>{imgData.birthTime ?? "error"}</li>
+            <li>{imgData.size !== undefined ? turnBintoMB(imgData.size) + "MB" : "error"}</li>
         </ListWrapper>
     )   
 }

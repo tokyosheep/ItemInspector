@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainContainer = {
     Container:styled.div`
         display: grid;
-        grid-template-rows: 70px 50px minmax(150px,250px) 30px;
+        grid-template-rows: 70px 50px minmax(300px,400px) 30px;
         grid-template-columns: minmax(300px , 1fr);
         grid-template-areas: 
             "header"

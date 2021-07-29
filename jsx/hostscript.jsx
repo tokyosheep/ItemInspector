@@ -1,6 +1,6 @@
 function hostScript(obj){
     switch(obj.funcType){
-        case exifreader:
+        case "justAlert":
             alert(obj.msg);
             return;
 
