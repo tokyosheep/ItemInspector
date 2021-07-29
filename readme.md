@@ -1,11 +1,8 @@
 <h1>Illustrator Extension ItemInspector</h1>
 
 <p>
-    Illustrator内に配置されたリンクファイルを監視するExtension。
-    aiファイル保存にExtensionが自動的に配置ファイルの情報をJSONで保存。
-    次回ファイルが開かれた時にJSONを読み込み前回のデータを情報を参照して情報が異なっていたら
-    アラートで警告。JSONデータとファイル名がリンクされているので現状aiドキュメントのファイル名
-    を変えたらうまく動きません、、、、
+    the Extension watches linked image files on Illustrator. when Illustrator saves ai file , the Extension saves image data as a JSON. next time , the Extension loads previous data from JSON automatically and compare it with present linked images. it will alert if it found difference between previous and present. 
+    this branch is basic type. if you hope to see more developed version . check other branches.
 </p>
 
-<p>2021年　6月 11日　プロトタイプ公開</p>
+<p>11 June 2021 prototype was published</p>
